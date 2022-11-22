@@ -14,7 +14,7 @@ logger.addHandler(handler)
 
 
 #Defines bot as client
-bot = discord.Client()
+bot = discord.Bot(debug_guilds=[798180194049196032])
 
 
 #Prints to terminal when bot is ready
