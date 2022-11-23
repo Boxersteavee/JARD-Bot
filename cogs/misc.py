@@ -11,7 +11,7 @@ class misc(commands.Cog):
     async def ping(self, ctx: discord.ApplicationContext):
         embed=discord.Embed(
             title="Ping",
-            description=f"The ping to discord is: '{round(self.bot.latency * 100, 2)}' ms")
+            description=f"The ping to discord is: {round(self.bot.latency * 100, 2)} ms")
         await ctx.respond(embed=embed)
 
 
