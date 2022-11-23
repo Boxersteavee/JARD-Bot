@@ -13,7 +13,7 @@ logger.addHandler(handler)
 
 
 
-bot = discord.Bot(debug_guilds=[798180194049196032])
+bot = discord.Bot(debug_guilds=[798180194049196032, 764981968579461130])
 
 
 @bot.event

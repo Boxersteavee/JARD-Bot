@@ -9,12 +9,11 @@ class misc(discord.Cog):
 
     @discord.slash_command()
     async def ping(self, ctx: discord.ApplicationContext):
-        await ctx.respond(
-            embed=discord.Embed(
-                title="Ping",
-                description=f"The ping to discord is: '{round(self.bot.latency * 100, 2)}' ms"
-            )
-        )
+        embed=discord.Embed(
+            title="Ping",
+            description=f"The ping to discord is: '{round(self.bot.latency * 100, 2)}' ms")
+        await ctx.respond(embed=embed)
+
 
 
 
