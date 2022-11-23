@@ -2,12 +2,12 @@ import discord
 from discord.ext import commands
 
 
-class misc(discord.Cog):
+class misc(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
 
-    @discord.slash_command()
+    @commands.slash_command()
     async def ping(self, ctx: discord.ApplicationContext):
         embed=discord.Embed(
             title="Ping",
