@@ -1,5 +1,4 @@
 .env
-cogs/demo.py
 discord.log
 __pycache__/
 cogs\__pycache__
