@@ -1,18 +1,19 @@
-# import discord
-# from discord.ext import commands
+ import discord
+ from discord.ext import commands
+
+ debug_guilds = [798180194049196032, 764981968579461130]
+
+ class SET_NAME(commands.Cog):
+     def __init__(self, bot):
+         self.bot = bot
 
 
-# class SET_NAME(commands.Cog):
-#     def __init__(self, bot):
-#         self.bot = bot
-
-
-#     @commands.slash_command()
-#     async def SET_NAME(self, ctx: discord.ApplicationContext):
-#         await ctx.respond()
+     @commands.slash_command(debug_guilds=debug_guilds)
+     async def SET_COMMAND_NAME(self, ctx: discord.ApplicationContext):
+         await ctx.respond()
 
 
 
 
-# def setup(bot):
-#     bot.add_cog(SET_NAME(bot))
+ def setup(bot):
+     bot.add_cog(SET_NAME(bot))
