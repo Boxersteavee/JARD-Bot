@@ -9,7 +9,7 @@ class mc(commands.Cog):
         self.bot = bot
 
 
-    @commands.slash_command()
+    @commands.slash_command(description = "Check an MC Server's Ping")
     async def mcping(self, 
         ctx: discord.ApplicationContext,
         ip: discord.Option(str, "Enter an IP/Server Address"),  # type: ignore
@@ -36,7 +36,7 @@ class mc(commands.Cog):
 
         else:
             finalrespondon = discord.Embed(
-                title = f'Status of{ip}'
+                title = f'Status of {ip}'
             )
             finalrespondon.set_footer(text='Information from https://api.mcsrvstat.us')
             finalrespondon.add_field(name='IP', value=f"`{API_Response['ip']}`", inline=True)
@@ -48,6 +48,18 @@ class mc(commands.Cog):
             finalrespondon.add_field(name='MOTD', value="```" + '\n'.join(API_Response['motd']['clean']) + "```" , inline=True)
             finalrespondon.set_image(url=f"https://api.mcsrvstat.us/icon/{ip}")
             await ctx.interaction.edit_original_response(embed=finalrespondon)
-        
+
+    @commmands.slash_command(description = "Get the latest minecraft version data.", debug_guilds=debug_guilds)
+    async def mcversion(self, ctx: discord.ApplicationContext):
+        r = requests.get('https://launchermeta.mojang.com/mc/game/version_manifest.json')
+        API_Response = r.json()
+        embed = discord.Embed(
+            title = 'Latest Minecraft Version Data'
+        )
+        embed.set_footer(text="Minecraft is the best video game!")
+        embed.add_field(name='Latest Release: ', value=f"'`{API_Response['latest']['release']}`", inline=True)
+        embed.add_field(name="Latest snapshot: ", value=f"`{API_Response['latest']['snapshot']}`", inline=False)
+        embed.set_image(url='https://www.minecraft.net/etc.clientlibs/minecraft/clientlibs/main/resources/img/minecraft-creeper-face.jpg')
+
 def setup(bot):
     bot.add_cog(mc(bot))
