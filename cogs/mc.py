@@ -49,7 +49,7 @@ class mc(commands.Cog):
             finalrespondon.set_image(url=f"https://api.mcsrvstat.us/icon/{ip}")
             await ctx.interaction.edit_original_response(embed=finalrespondon)
 
-    @commmands.slash_command(description = "Get the latest minecraft version data.", debug_guilds=debug_guilds)
+    @commands.slash_command(description = "Get the latest minecraft version data.", debug_guilds=debug_guilds)
     async def mcversion(self, ctx: discord.ApplicationContext):
         r = requests.get('https://launchermeta.mojang.com/mc/game/version_manifest.json')
         API_Response = r.json()
