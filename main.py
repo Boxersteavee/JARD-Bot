@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 import logging
 from discord.ext import commands
 import contextlib
+import datetime
+import calendar
 
 
 logger = logging.getLogger('discord')
@@ -16,6 +18,8 @@ debug_guilds = [764981968579461130, 798180194049196032]
 
 bot = commands.Bot()
 
+date = datetime.datetime.utcnow()
+utc_time = calendar.timegm(date.utctimetuple())
 
 @bot.event
 async def on_ready():
@@ -62,8 +66,16 @@ async def cogreload(
         await bot.sync_commands()
     await ctx.interaction.edit_original_response(content="Reloaded cog(s) and synced commands")
 
-
-
+@bot.slash_command(debug_guilds=debug_guilds)
+async def uptime(
+    ctx: discord.ApplicationContext
+):
+    embed = discord.Embed(
+        title="JARD Bot's Uptime"
+    )
+    embed.set_footer(text="I am JARD-Bot, Just Another Random Discord Bot")
+    embed.add_field(name="Startup of bot: ", value=f"<t:{utc_time}:R> (Since <t:{utc_time}:f>")
+    await ctx.respond(embed=embed)
 #Loads .env and uses token to login
 load_dotenv()
 bot.run(os.getenv('TOKEN'))

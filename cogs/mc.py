@@ -60,7 +60,7 @@ class mc(commands.Cog):
         embed.add_field(name="Latest release: ", value=f"`{API_Response['latest']['release']}`", inline=False)
         embed.add_field(name="Latest snapshot: ", value=f"`{API_Response['latest']['snapshot']}`", inline=False)
         embed.set_image(url='https://www.minecraft.net/etc.clientlibs/minecraft/clientlibs/main/resources/img/minecraft-creeper-face.jpg')
-
+        await ctx.respond(embed=embed)
 def setup(bot):
     bot.add_cog(mc(bot))
 
